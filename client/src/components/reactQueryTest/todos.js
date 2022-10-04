@@ -1,4 +1,5 @@
 import { useQueryClient, useQuery, useMutation } from 'react-query'
+import TodoList from '../todos/todoList'
 import API from '../../utils/api'
 
 const Todos = () => {
@@ -6,9 +7,10 @@ const Todos = () => {
 
   const { isLoading, isError, error, data } = useQuery('todos', API.getTodos)
 
-  const updateMutation = useMutation(API.createTodo, {
-    onSuccess: () => queryClient.invalidateQueries('todos')
-  })
+  const onSuccess = () => queryClient.invalidateQueries('todos')
+  
+  const updateMutation = useMutation(API.updateTodo, { onSuccess })
+  const deleteMutation = useMutation(API.deleteTodo, { onSuccess })
 
   return (
     <>
@@ -16,16 +18,11 @@ const Todos = () => {
       {isError && <p style={{color: 'red'}}>{error}</p>}
       {isLoading 
         ? <p>Loading...</p> 
-        : data.map(({ id, complete, text }) => {
-          return (
-            <div key={id}>
-              <h4 style={{textDecoration: complete ? 'line-through' : 'none'}}>{text}</h4>
-              <button onClick={() => updateMutation.mutate({ id, complete: !complete })}>
-                {complete ? 'Incomeplete' : 'Complete'}
-              </button>
-            </div>
-          )
-        })
+        : <TodoList
+            todos={data}
+            onComplete={updateMutation.mutate}
+            onDelete={deleteMutation.mutate}
+          />
       }
     </>
   )
