@@ -1,6 +1,6 @@
 const Nav = ({ active, setActive, tabs }) => {
   return (
-    <nav>
+    <nav style={{marginBottom: 60}}>
       {tabs.map(t => (
         <button 
           onClick={() => setActive(t)}
