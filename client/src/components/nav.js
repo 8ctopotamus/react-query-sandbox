@@ -4,7 +4,8 @@ const Nav = ({ active, setActive, tabs }) => {
       {tabs.map(t => (
         <button 
           onClick={() => setActive(t)}
-          class={`button ${active !== t && 'button-outline'}`}
+          className={`button ${active !== t && 'button-outline'}`}
+          key={t}
         >{t}</button>
       ))}
     </nav>

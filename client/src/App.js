@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Nav from './components/nav'
-import CatDogCount from './components/contextTest/catDogCount'
-import { CTXProvider } from './components/contextTest/testCtx'
+import ContextTest from './components/contextTest'
+import ReactQueryTest from './components/reactQueryTest'
+import ZustandTest from './components/zustandTest'
 
 const tabs = ['react-query', 'zustand', 'react-context']
 
@@ -11,15 +12,11 @@ function App() {
   const renderUI = () => {
     switch(active) {
       case 'react-query':
-        return 'react-query'
+        return <ReactQueryTest />
       case 'zustand':
-        return 'Zustand'
+        return <ZustandTest />
       case 'react-context':
-        return (
-          <CTXProvider>
-            <CatDogCount />
-          </CTXProvider>
-        )
+        return <ContextTest />
     }
   }
 
