@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'
+import Nav from './components/nav'
+import CatDogCount from './components/contextTest/catDogCount'
+import { CTXProvider } from './components/contextTest/testCtx'
+
+const tabs = ['react-query', 'zustand', 'react-context']
 
 function App() {
+  const [active, setActive] = useState(tabs[0])
+
+  const renderUI = () => {
+    switch(active) {
+      case 'react-query':
+        return 'react-query'
+      case 'zustand':
+        return 'Zustand'
+      case 'react-context':
+        return (
+          <CTXProvider>
+            <CatDogCount />
+          </CTXProvider>
+        )
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload...
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='container'>
+      <Nav
+        tabs={tabs}
+        active={active}
+        setActive={setActive}
+      />
+      { renderUI() }
     </div>
-  );
+  )
 }
 
 export default App;
