@@ -4,7 +4,7 @@ import ContextTest from './components/contextTest'
 import ReactQueryTest from './components/reactQueryTest'
 import ZustandTest from './components/zustandTest'
 
-const tabs = ['react-query', 'zustand', 'react-context']
+const tabs = ['zustand', 'react-query', 'react-context']
 
 function App() {
   const [active, setActive] = useState(tabs[0])

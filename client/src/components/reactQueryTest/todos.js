@@ -16,7 +16,7 @@ const Todos = () => {
 
   return (
     <>
-      <h1>TODOS</h1>
+      <h1>REACT QUERY TODOS</h1>
       <AddTodoForm onSubmit={createMutation.mutate} />
       {isError && <p style={{color: 'red'}}>{error}</p>}
       {isLoading 

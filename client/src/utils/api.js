@@ -12,7 +12,6 @@ const API = {
     return await r.json()
   },
   updateTodo: async updatedTodo => {
-    console.log(updatedTodo)
     const r = await fetch(`/todos/${updatedTodo.id}`, {
       method: 'PUT',
       headers: { "Content-Type": "application/json" },
