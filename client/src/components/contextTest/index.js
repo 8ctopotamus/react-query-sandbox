@@ -19,7 +19,7 @@ const Todos = () => {
 
 const ContextTest = () => (
   <CTXProvider>
-    <h2>React Context Todos</h2>
+    <h1>REACT CONTEXT TODOS</h1>
     <Todos />
   </CTXProvider>
 )

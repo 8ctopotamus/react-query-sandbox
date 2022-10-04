@@ -20,7 +20,7 @@ const reducer = (state, action) => {
     case 'UPDATE_TODO':
       const updatedTask = action.payload
       const taskId = updatedTask.id
-      const taskIdx = state.findIndex(({ id }) => id === taskId)
+      const taskIdx = state.todos.findIndex(({ id }) => id === taskId)
       const todos = [...state.todos]
       todos.splice(taskIdx, 1, updatedTask)
       return {
@@ -60,19 +60,21 @@ export const CTXProvider = props => {
   }
 
   const updateTodo = async todo => {
-    const updatedTodo = await API.updateTodos(todo)
+    const updatedTodo = await API.updateTodo(todo)
     dispatch({
       type: 'UPDATE_TODO',
       payload: updatedTodo,
     })
   }
 
-  const deleteTodo = async todoId => {
-    const deleted = await API.deletedTodos(todoId)
-    dispatch({
-      type: 'DELETE_TODO',
-      payload: { id: todoId, deleted }
-    })
+  const deleteTodo = async id => {
+    const deleted = await API.deleteTodo(id)
+    if (deleted) {
+      dispatch({
+        type: 'DELETE_TODO',
+        payload: id
+      })
+    }
   }
 
   return (
