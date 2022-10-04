@@ -3,8 +3,9 @@ import Nav from './components/nav'
 import ContextTest from './components/contextTest'
 import ReactQueryTest from './components/reactQueryTest'
 import ZustandTest from './components/zustandTest'
+import RecoilTest from './components/recoilTest'
 
-const tabs = ['zustand', 'react-query', 'react-context']
+const tabs = ['react-context', 'recoil', 'zustand', 'react-query']
 
 function App() {
   const [active, setActive] = useState(tabs[0])
@@ -17,6 +18,8 @@ function App() {
         return <ZustandTest />
       case 'react-context':
         return <ContextTest />
+      case 'recoil':
+        return <RecoilTest />
     }
   }
 
