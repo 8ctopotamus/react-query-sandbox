@@ -5,7 +5,7 @@ import ReactQueryTest from './components/reactQueryTest'
 import ZustandTest from './components/zustandTest'
 import RecoilTest from './components/recoilTest'
 
-const tabs = ['recoil', 'zustand', 'react-query', 'react-context']
+const tabs = ['zustand', 'react-query', 'react-context'] //'recoil',
 
 function App() {
   const [active, setActive] = useState(tabs[0])

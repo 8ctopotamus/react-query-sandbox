@@ -3,12 +3,14 @@ import API from '../../../utils/api'
 
 const useTodoStore = create(set => ({
   todos: [],
+  loading: true,
   getTodos: async () => {
     const todos = await API.getTodos()
-    set({ todos })
+    set({ todos, loading: false })
   },
   createTodo: async todo => {
     const newTodo = await API.createTodo(todo)
+    // this.getTodos()
     set(state => ({ todos: [...state.todos, newTodo] }))
   },
   updateTodo: async todo => {

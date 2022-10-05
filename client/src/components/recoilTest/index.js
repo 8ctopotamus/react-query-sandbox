@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import { RecoilRoot, useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import { todoListState, todosCountState } from './atoms/todos'
 import AddTodoForm from '../todos/addTodoForm'
@@ -5,7 +6,7 @@ import TodoList from '../todos/todoList'
 import API from '../../utils/api'
 
 const Todos = () => {
-  const todoList = useRecoilValue(todoListState)
+  const todoList = useRecoilState(todoListState)
   const count = useRecoilValue(todosCountState)
   const setTodoList = useSetRecoilState(todoListState)
 
@@ -36,13 +37,15 @@ const Todos = () => {
 
   return (
     <>
-      <h1>RECOIL TODOS ({count})</h1>
-      <AddTodoForm onSubmit={handleSubmit} />
-      <TodoList 
-        todos={todoList} 
-        onComplete={handleComplete}
-        onDelete={handleDelete}
-      />
+      <Suspense fallback={<p>Loading...</p>}>
+        <h1>RECOIL TODOS ({count})</h1>
+        <AddTodoForm onSubmit={handleSubmit} />
+        <TodoList 
+          todos={todoList} 
+          onComplete={handleComplete}
+          onDelete={handleDelete}
+        />
+      </Suspense>
     </>
   )
 }

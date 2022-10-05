@@ -3,22 +3,24 @@ const TodoList = ({ todos = [], onComplete, onDelete }) => todos.map(({ id, comp
     <h4 style={{
       textDecoration: complete ? 'line-through' : 'none',
       color: complete ? 'green' :'inherit'
-    }}>{text}</h4>
+    }}>
+      {text}
+      <span 
+        onClick={() => onDelete(id)}
+        style={{
+          color: 'red',
+          borderColor: 'red',
+          margin: 10
+        }}
+      >
+        X
+      </span>
+    </h4>
     <button 
       onClick={() => onComplete({ id, complete: !complete })}
       className={`button ${complete && 'button-outline'}`}
     >
       {complete ? 'Undo' : 'Complete'}
-    </button>
-    <button 
-      onClick={() => onDelete(id)}
-      className="button button-outline"
-      style={{
-        color: 'red',
-        borderColor: 'red'
-      }}
-    >
-      X
     </button>
   </div>
 ))

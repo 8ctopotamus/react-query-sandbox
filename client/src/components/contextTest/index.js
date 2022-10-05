@@ -7,6 +7,7 @@ const Todos = () => {
 
   return (
     <>
+      <h1>REACT CONTEXT TODOS ({state.todos.length})</h1>
       <AddTodoForm onSubmit={createTodo} />
       <TodoList
         todos={state.todos}
@@ -19,7 +20,6 @@ const Todos = () => {
 
 const ContextTest = () => (
   <CTXProvider>
-    <h1>REACT CONTEXT TODOS</h1>
     <Todos />
   </CTXProvider>
 )
